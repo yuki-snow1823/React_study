@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8" />
   <title>React</title>
   <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <style>
+    #root {
+      cursor: pointer;
+      font-size: 20pt;
+      background-color: lightblue;
+      padding: 1px 20px;
+    }
+  </style>
 </head>
 
 <body>
   <h1>React</h1>
-  <div id="root">wait...</div>
+  <div id="root" onclick="doCount();">wait...</div>
   <script>
+    let counter = 0;
     let dom = document.querySelector('#root');
-    // タグを作成(仮想DOM)
-    let element = React.createElement(
-      'p', {}, 'Hello React!'
-    );
-    // レンダリング
-    ReactDOM.render(element, dom);
+    // なんでここにいるんだろう
+    doCount();
+
+
+    function doCount() {
+      counter++;
+      let element = React.createElement(
+        'p', {}, "こんにちはReact：" + counter
+      );
+      ReactDOM.render(element, dom);
+    }
   </script>
 </body>
 
