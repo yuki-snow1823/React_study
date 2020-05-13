@@ -14,24 +14,24 @@
   <div id="root">wait...</div>
 
 
-  <script type="text/babel">
-    let dom = document.querySelector('#root');
+<script type="text/babel">
+  let dom = document.querySelector('#root');
 
 
-    let el = (
-        <div>
-            <h2>JSX sample</h2>
-            <p>This is sample message.</p>
-            <h3>お試し</h3>
-            <ul>
-              <li>Emmetも使える</li>
-            </ul>
-        </div>
-    );
+let message = "新しいメッセージです。";
+let link = "http://google.com";
 
 
-    ReactDOM.render(el, dom);
-    </script>
+let el = (
+    <div>
+        <p>{message}</p>
+        <p><a href={link}>this is link!</a></p>
+    </div>
+);
+
+
+ReactDOM.render(el, dom);
+</script>
 </body>
 
 </html>
