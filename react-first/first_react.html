@@ -15,43 +15,40 @@
     <script type="text/babel">
       let dom = document.querySelector("#root");
 
-      const table = {
-        fontSize: "16pt",
-        padding: "5px 50px"
+      const dfn = {
+        fontSize: "20pt",
+        padding: "10px"
       };
-      const th = {
+      const dt = {
+        fontSize: "16pt",
         color: "white",
         backgroundColor: "#006",
-        padding: "5px 15px"
+        padding: "10px"
       };
-      const td = {
+      const dd = {
         color: "black",
-        padding: "5px 15px",
-        border: "1px solid gray"
+        padding: "10px"
       };
 
-      let data = [
-        { name: "Taro", mail: "taro@yamada", age: 45 },
-        { name: "Hanako", mail: "hanako@flower", age: 37 },
-        { name: "Sachiko", mail: "sachiko@happy", age: 29 }
-      ];
+      let data = {
+        url: "http://google.com",
+        title: "Google",
+        caption: "※Googleの検索サイトです。"
+      };
 
       let el = (
         <div>
-          <table style={table}>
-            <tr>
-              <th style={th}>name</th>
-              <th style={th}>mail</th>
-              <th style={th}>age</th>
-            </tr>
-            {data.map(value => (
-              <tr>
-                <td style={td}>{value.name}</td>
-                <td style={td}>{value.mail}</td>
-                <td style={td}>{value.age}</td>
-              </tr>
-            ))}
-          </table>
+          {(() => (
+            <dl>
+              <dt style={dt}>
+                <dfn style={dfn}>{data.title}</dfn>
+              </dt>
+              <dd style={dd}>{data.caption}</dd>
+              <dd style={dd}>
+                <a href={data.url}>※{data.title}に移動</a>
+              </dd>
+            </dl>
+          ))()}
         </div>
       );
 
