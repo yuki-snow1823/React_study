@@ -18,24 +18,37 @@
   let dom = document.querySelector('#root');
 
 
-let message = "新しいメッセージです。";
+  let message = "メッセージを表示します。";
 
 
-const msg_s = {
-    fontSize:"20pt",
-    color:"red",
-    border:"1px solid blue"
-}
+  const msg = {
+    fontSize: "20pt",
+    fontWeight: "bold",
+    color: "red",
+    border: "2px solid green"
+  }
+
+// 関数定義
+// 表示するメッセージ、サイズ、色を引数として受け取っている
+  let printMsg = function (msg, size, color) {
+    const style = {
+      fontSize: size + "pt",
+      fontWeight: '700',
+      color: color,
+      border: "1px solid " + color
+    };
+    return <p style={style}>{msg}</p>;
+  }
 
 
-let el = (
+  let el = (
     <div>
-        <p style={msg_s}>{message}</p>
+      {printMsg('最初のメッセージ', 30, '#ddd')} {/* ここで送っている */}
+      {printMsg('次のメッセージです.', 20, '#aaa')}
+      {printMsg('最後のメッセージでした.', 14, '#333')}
     </div>
-);
-
-
-ReactDOM.render(el, dom);
+  );
+  ReactDOM.render(el, dom);
 </script>
 </body>
 
