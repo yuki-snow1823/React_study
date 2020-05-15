@@ -14,41 +14,32 @@
   <div id="root">wait...</div>
 
 
-<script type="text/babel">
-  let dom = document.querySelector('#root');
+  <script type="text/babel">
+    let dom = document.querySelector('#root');
 
 
-  let message = "メッセージを表示します。";
+let message = "メッセージを表示します。";
 
 
-  const msg = {
-    fontSize: "20pt",
-    fontWeight: "bold",
-    color: "red",
-    border: "2px solid green"
+const msg = {
+fontSize:"20pt",
+fontWeight: "bold",
+color:"red",
+border:"2px solid green"
+}
+
+
+let flg = false; // ★
+
+
+let el = (
+<div>
+  {flg &&
+  <p style={msg}>{message}</p>
   }
-
-// 関数定義
-// 表示するメッセージ、サイズ、色を引数として受け取っている
-  let printMsg = function (msg, size, color) {
-    const style = {
-      fontSize: size + "pt",
-      fontWeight: '700',
-      color: color,
-      border: "1px solid " + color
-    };
-    return <p style={style}>{msg}</p>;
-  }
-
-
-  let el = (
-    <div>
-      {printMsg('最初のメッセージ', 30, '#ddd')} {/* ここで送っている */}
-      {printMsg('次のメッセージです.', 20, '#aaa')}
-      {printMsg('最後のメッセージでした.', 14, '#333')}
-    </div>
-  );
-  ReactDOM.render(el, dom);
+</div>
+);
+ReactDOM.render(el, dom);
 </script>
 </body>
 
