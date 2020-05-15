@@ -13,33 +13,38 @@
 <body>
   <h1>React</h1>
   <div id="root">wait...</div>
-  <script type="text/babel">
-    let dom = document.querySelector('#root');
+<script type="text/babel">
+  let dom = document.querySelector('#root');
 
 
-    const msg = {
-        fontSize: "20pt",
-        fontWeight:"bold",
-        padding: "10px",
-        color:"white",
-        backgroundColor:"darkblue"
-    };
+const msg = {
+    fontSize: "16pt",
+    fontWeight: "bold",
+    padding: "10px",
+    color:"white",
+    backgroundColor:"darkblue"
+};
 
 
-    // これが関数コンポーネント
-    function Welcome(props) {
-        return <p style={msg}>Hello React!!</p>;
+function Calc(props) {
+    let total = 0;
+    for(let i = 1;i <= props.number;i++){
+        total += i;
     }
+    return <p style={msg}>１から{props.number}までの
+        合計は、「{total}」です。</p>;
+}
 
 
-    // 表示するJSX
-    let el = (
-    <div>
-        <Welcome />
-    </div>
-    );
-    ReactDOM.render(el, dom);
-    </script>
+let el = (
+<div>
+    <Calc number="100" />
+    <Calc number="200" />
+    <Calc number="300" />
+</div>
+);
+ReactDOM.render(el, dom);
+</script>
 </body>
 
 
