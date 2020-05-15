@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>Sample</title>
+  </head>
+
+  <body>
+    <h1>Index</h1>
+
+    <script>
+      class MyObj {
+        constructor(r, g, b) {
+          this.red = r;
+          this.green = g;
+          this.blue = b;
+        }
+
+        get hex() {
+          return (
+            "#" +
+            ("00" + this.red.toString(16)).substr(-2) +
+            ("00" + this.blue.toString(16)).substr(-2) +
+            ("00" + this.green.toString(16)).substr(-2)
+          );
+        }
+        
+        // 関数ではなくプロパティのように扱える
+        get startP() {
+          return '<p style="background-color:' + this.hex + '">';
+        }
+
+        get endP() {
+          return "</p>"; // タグを設定
+        }
+
+        print() {
+          // こんな感じでstartP()としない
+          document.write(this.startP);
+          document.write("RED:  " + this.red + "<br/>");
+          document.write("GREEN:" + this.green + "<br/>");
+          document.write("BLUE: " + this.blue + "<br/>");
+          document.write(this.endP);
+        }
+      }
+
+      let ob = new MyObj(255, 200, 200);
+      ob.print();
+
+      let ob2 = new MyObj(0, 150, 200);
+      ob2.print();
+    </script>
+  </body>
+</html>
