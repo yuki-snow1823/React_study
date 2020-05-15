@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>React</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+</head>
+
+
+<body>
+  <h1>React</h1>
+  <div id="root">wait...</div>
+  <script type="text/babel">
+    let dom = document.querySelector('#root');
+
+
+    const msg = {
+        fontSize: "20pt",
+        fontWeight:"bold",
+        padding: "10px",
+        color:"white",
+        backgroundColor:"darkblue"
+    };
+
+
+    // これが関数コンポーネント
+    function Welcome(props) {
+        return <p style={msg}>Hello React!!</p>;
+    }
+
+
+    // 表示するJSX
+    let el = (
+    <div>
+        <Welcome />
+    </div>
+    );
+    ReactDOM.render(el, dom);
+    </script>
+</body>
+
+
+</html>
