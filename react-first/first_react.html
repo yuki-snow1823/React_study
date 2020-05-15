@@ -18,27 +18,38 @@
     let dom = document.querySelector('#root');
 
 
-let message = "メッセージを表示します。";
+let message_true = "メッセージを表示します。";
+let message_false = "メッセージはありません……";
 
 
-const msg = {
+const msg_true = {
 fontSize:"20pt",
 fontWeight: "bold",
 color:"red",
 border:"2px solid green"
 }
+const msg_false = {
+fontSize:"16pt",
+fontWeight: "plain",
+color:"white",
+backgroundColor:"blue",
+}
 
 
-let flg = false; // ★
+let flg = true; // ★
 
 
 let el = (
 <div>
-  {flg &&
-  <p style={msg}>{message}</p>
+  {flg ?
+    <p style={msg_true}>{message_true}</p>
+  :
+  <p style={msg_false}>{message_false}</p>
   }
 </div>
 );
+
+
 ReactDOM.render(el, dom);
 </script>
 </body>
