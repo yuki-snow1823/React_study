@@ -1,51 +1,43 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>React</title>
-  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
-</head>
+  <body>
+    <h1>React</h1>
+    <div id="root">wait...</div>
+    <script type="text/babel">
+      let dom = document.querySelector("#root");
 
+      const msg = {
+        fontSize: "20pt",
+        fontWeight: "bold",
+        padding: "10px",
+        border: "solid 5px yellow",
+      };
 
-<body>
-  <h1>React</h1>
-  <div id="root">wait...</div>
-<script type="text/babel">
-  let dom = document.querySelector('#root');
+      class Hello extends React.Component {
+        constructor(props) {
+          super(props);
+        }
 
+        render() {
+          return <p style={msg}>Hello!!</p>;
+        }
+      }
 
-const msg = {
-    fontSize: "16pt",
-    fontWeight: "bold",
-    padding: "10px",
-    color:"white",
-    backgroundColor:"darkblue"
-};
+      let el = (
+        <div>
+          <Hello />
+        </div>
+      );
 
-
-function Calc(props) {
-    let total = 0;
-    for(let i = 1;i <= props.number;i++){
-        total += i;
-    }
-    return <p style={msg}>１から{props.number}までの
-        合計は、「{total}」です。</p>;
-}
-
-
-let el = (
-<div>
-    <Calc number="100" />
-    <Calc number="200" />
-    <Calc number="300" />
-</div>
-);
-ReactDOM.render(el, dom);
-</script>
-</body>
-
-
+      ReactDOM.render(el, dom);
+    </script>
+  </body>
 </html>
