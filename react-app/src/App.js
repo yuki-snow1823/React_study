@@ -11,6 +11,30 @@ class App extends Component {
     margin: "20px 0px",
     padding: "5px",
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: "type your name:",
+    };
+    this.doCheck = this.doCheck.bind(this);
+  }
+
+  doCheck(event) {
+    alert(event.target.value + "は長すぎます。(最大10文字)");
+  }
+
+  render() {
+    return (
+      <div>
+        <h1> React </h1> <h2> {this.state.message} </h2>{" "}
+        <Message maxlength="10" onCheck={this.doCheck} />{" "}
+      </div>
+    );
+  }
+}
+
+class Message extends Component {
   inputStyle = {
     fontSize: "12pt",
     padding: "5px",
@@ -18,42 +42,42 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      message: "type your name:",
-    };
     this.doChange = this.doChange.bind(this);
-    this.doSubmit = this.doSubmit.bind(this);
   }
 
-  doChange(event) {
-    // リアクティブに値を書き換える
-    this.input = event.target.value;
+  // 値が変わるたびにここが作動する、onChangeはinputの元々ある属性。
+  // で。はみ出た瞬間onCheckにバインドされているeが発動する。
+  // 何かというと
+    // doCheck(event) {
+    //   alert(event.target.value + "は長すぎます。(最大10文字)");
+    // }
+
+    // render() {
+    //   return ( <
+    //     div >
+    //     <
+    //     h1 > React < /h1> <h2> {this.state.message} </h2 > {
+    //       " "
+    //     } <
+    //     Message maxlength = "10"
+    //     onCheck = {
+    //       this.doCheck　この部分。
+    //     }
+    //     />{" "} <
+    //     /div>
+    //   );
+    // }
+    // }
+  doChange(e) {
+    if (e.target.value.length > this.props.maxlength) {
+      this.props.onCheck(e);
+      e.target.value = e.target.value.substr(0, this.props.maxlength);
+    }
   }
 
-  doSubmit(event) {
-    this.setState({
-      // 書き換わったインプットの情報がここに入る
-      message: "Hello, " + this.input + "!!",
-    });
-    event.preventDefault();
-  }
   render() {
     return (
-      <div>
-        <h1> React </h1> <h2> {this.state.message} </h2>{" "}
-        <form onSubmit={this.doSubmit}>
-          <label>
-            <input
-              type="text"
-              style={this.inputStyle}
-              onChange={this.doChange}
-              required
-              pattern="[A-Za-z _,.]+"
-            />
-          </label>{" "}
-          <input type="submit" style={this.inputStyle} value="Click" />
-        </form>{" "}
-      </div>
+      <input type="text" style={this.inputStyle} onChange={this.doChange} />
     );
   }
 }
