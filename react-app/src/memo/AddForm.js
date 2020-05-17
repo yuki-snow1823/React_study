@@ -32,8 +32,13 @@ class AddForm extends Component {
 
   doAction(e) {
     e.preventDefault();
+    console.log(e);
     let action = addMemo(this.state.message);
+    // アクションの定義
+    console.log("36", action);
     this.props.dispatch(action);
+    // ここでアクションを送っている
+    // で、アクションクリエイターが反応する
     this.setState({
       message: "",
     });
@@ -52,6 +57,7 @@ class AddForm extends Component {
             value={this.state.message}
             required
           />
+          {/* このvalueがケースに当たるのかも */}
           <input type="submit" style={this.btn} value="Add" />
         </form>{" "}
       </div>

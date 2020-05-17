@@ -28,6 +28,7 @@ class Item extends Component {
 
   render() {
     let d = this.props.value.created;
+    // Dateをcreatedしたから呼び出せる
     let f = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
     return (
       <tr>

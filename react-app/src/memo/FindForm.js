@@ -30,7 +30,9 @@ class FindForm extends Component {
   }
 
   doAction(e) {
+    console.log(e); // 何も出ない
     e.preventDefault();
+    // ステートから探してくる処理
     let action = findMemo(this.state.find);
     this.props.dispatch(action);
   }
