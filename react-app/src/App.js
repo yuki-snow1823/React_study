@@ -4,6 +4,8 @@ import "./App.css";
 
 // ステートのマッピング
 // 関連づけみたいな感じなのでは
+// 関数名は関係なく、stateの何を共有するかかける。
+// 全部きたら、本来のpropsの名前と被る可能性がある
 function mappingState(state) {
   return state;
 }
