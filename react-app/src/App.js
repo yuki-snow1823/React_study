@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+// コンポーネントにストアを設定するためのconnectを読み込む
 import { connect } from "react-redux";
 import "./App.css";
+
+// コンポーネント類の読み込み
 import Memo from "./memo/Memo";
 import AddForm from "./memo/AddForm";
 import FindForm from "./memo/FindForm";
@@ -19,13 +22,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1> Memo </h1> <AddForm />
+        <h1> Memo </h1>
+        <AddForm />
         <hr />
         <table>
           {" "}
           <tbody>
             {" "}
             <tr>
+              {/* tdは上にあるやつ */}
               <td style={this.td}>
                 {" "}
                 <FindForm />{" "}
