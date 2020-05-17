@@ -1,7 +1,9 @@
 import {
   createStore
 } from 'redux';
+// 必須
 
+// 最初にストアの値を設定
 const initData = {
   data: [{
     message: 'sample data',
@@ -13,6 +15,9 @@ const initData = {
 };
 
 // レデューサー
+// コンポーネントからきた処理をイベント名ごとに振り分ける
+// state=名前+アクション
+// 必ずstateを戻り値にすること
 export function memoReducer(state = initData, action) {
   switch (action.type) {
     case 'ADD':
@@ -30,16 +35,23 @@ export function memoReducer(state = initData, action) {
 }
 
 // レデュースアクション
+// 上の仕分けに対応するアクション
 
 // メモ追加のレデュース処理
 function addReduce(state, action) {
   let data = {
+    // ここがよくわからない
+    // 最初に値を用意してる：宣言みたいな感じか？
+    // 多分、actionに何かしらのデータがあるはず
     message: action.message,
     created: new Date()
   };
+  console.log(action);
+  // {type: "ADD", message: "aa"}が入ってた
   let newdata = state.data.slice();
   newdata.unshift(data);
   return {
+    // どこに返してるんだ？何しているんだ？
     data: newdata,
     message: 'Added!',
     mode: 'default',
@@ -49,6 +61,7 @@ function addReduce(state, action) {
 
 // メモ検索のレデュース処理
 function findReduce(state, action) {
+  console.log(action.find);
   let f = action.find;
   let fdata = [];
   state.data.forEach((value) => {
@@ -79,6 +92,7 @@ function deleteReduce(state, action) {
 // アクションクリエーター
 
 // メモ追加のアクション
+// 【重要】ここで、dispatchしたときのactionを作ってる。
 export function addMemo(text) {
   return {
     type: 'ADD',
