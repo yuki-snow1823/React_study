@@ -5,10 +5,7 @@ import {
 
 // 最初にストアの値を設定
 const initData = {
-  data: [{
-    message: 'sample data',
-    created: new Date()
-  }],
+  data: [],
   message: 'please type message:',
   mode: 'default',
   fdata: []
@@ -37,25 +34,21 @@ export function memoReducer(state = initData, action) {
 // レデュースアクション
 // 上の仕分けに対応するアクション
 
-// メモ追加のレデュース処理
-function addReduce(state, action) {
+function addReduce(state, action){
+  let d = new Date();
+  let f = d.getHours() + ':' + d.getMinutes()
+    + ':' + d.getSeconds();
   let data = {
-    // ここがよくわからない
-    // 最初に値を用意してる：宣言みたいな感じか？
-    // 多分、actionに何かしらのデータがあるはず
-    message: action.message,
-    created: new Date()
+    message:action.message,
+    created:f
   };
-  console.log(action);
-  // {type: "ADD", message: "aa"}が入ってた
   let newdata = state.data.slice();
   newdata.unshift(data);
   return {
-    // どこに返してるんだ？何しているんだ？
-    data: newdata,
-    message: 'Added!',
-    mode: 'default',
-    fdata: []
+    data:newdata,
+    message:'Added!',
+    mode:'default',
+    fdata:[]
   };
 }
 
