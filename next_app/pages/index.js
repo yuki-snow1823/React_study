@@ -1,7 +1,5 @@
-module.exports = {
-  exportPathMap: function () {
-    return {
-      '/': { page: '/' }
-    }
-  }
-}
+export default () => (
+  <div>
+    <h1> Next.js </h1> <div> Welcome to next.js! </div>{" "}
+  </div>
+);

@@ -1,0 +1,1 @@
+{"ast":null,"code":"module.exports = {\n  exportPathMap: function () {\n    return {\n      '/': {\n        page: '/'\n      }\n    };\n  }\n};","map":null,"metadata":{},"sourceType":"script"}
