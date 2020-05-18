@@ -1,3 +1,6 @@
+import Link from 'next/link'
+
+
 const h1 = {
   fontSize: "72pt",
   fontWeight: "bold",
@@ -13,8 +16,14 @@ const p = {
   fontSize: "16pt",
 };
 
-export default () => (
+
+export default () =><div>
+  <h1 style={h1}>Next.js</h1>
+  <p style={p}>This is Other page.</p>
+  <hr/>
   <div>
-    <h1 style={h1}> Next.js </h1> <p style={p}> Welcome to next.js! </p>{" "}
+    <Link href="/">
+      <a>&lt;&lt; Back to Index page</a>
+    </Link>
   </div>
-);
+</div>
