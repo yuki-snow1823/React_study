@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import Form from "./Form"; 
 
 // class Form extends Component {
 //   constructor(props) {
@@ -29,7 +30,7 @@ class App extends Component {
         <div className="button-wrapper">
           <button className="submit-button">投稿</button>
         </div>
-        {/* <Form placeholder="これは初期値です。"></Form> */}
+        <Form placeholder="これは初期値です。"></Form>
       </div>
     );
   }
