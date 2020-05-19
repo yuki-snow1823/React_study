@@ -3,6 +3,7 @@ import React, { Component } from "react";
 class Image extends Component {
   constructor(props) {
     super(props);
+    // ここで名前を設定
     this.fname = "./static/" + props.fname;
     this.size = props.size + "px";
   }
