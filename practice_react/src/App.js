@@ -14,7 +14,7 @@ class App extends Component {
         <p> ここにツイート前の叫びを投稿します。 </p>{" "}
         <Form placeholder="これは初期値です。"> </Form>{" "}
         <div className="button-wrapper">
-          <button className="submit-button"> 投稿 </button>{" "}
+          <button className="submit-button" onClick={this.doAction}> 投稿 </button>{" "}
         </div>{" "}
       </div>
     );
