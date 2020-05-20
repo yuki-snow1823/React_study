@@ -9,7 +9,8 @@ class Form extends Component {
   render() {
     return (
       <div>
-        <input type="text" placeholder={this.placeholder} />
+        {/* placeholderがバインドされているから、もし他で使う場合ここだけ変えられる */}
+        <textarea className="main-form" maxLength="140" placeholder={this.placeholder} />
       </div>
     );
   }
