@@ -8,6 +8,12 @@ class App extends Component {
     this.title = props.title;
     this.doAction = this.doAction.bind(this);
   }
+  doAction(e) {
+    this.setState((state) => ({
+      counter: state.message
+      // Formコンポーネントのstateを取得したい
+    }));
+  }
   render() {
     return (
       <div>
@@ -15,7 +21,10 @@ class App extends Component {
         <p> ここにツイート前の叫びを投稿します。 </p>{" "}
         <Form placeholder="これは初期値です。"> </Form>{" "}
         <div className="button-wrapper">
-          <button className="submit-button" onClick={this.doAction}> 投稿 </button>{" "}
+          <button className="submit-button" onClick={this.doAction}>
+            {" "}
+            投稿{" "}
+          </button>{" "}
         </div>{" "}
       </div>
     );

@@ -5,6 +5,9 @@ class Form extends Component {
   constructor(props) {
     super();
     this.placeholder = props.placeholder
+    this.state = {
+      message: "",
+    };
   }
   render() {
     return (
