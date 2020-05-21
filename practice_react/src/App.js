@@ -6,26 +6,14 @@ class App extends Component {
   constructor(props) {
     super();
     this.title = props.title;
-    this.doAction = this.doAction.bind(this);
   }
-  doAction(e) {
-    this.setState((state) => ({
-      counter: state.message
-      // Formコンポーネントのstateを取得したい
-    }));
-  }
+// formコンポーネントのstateだけこっちに置くことは可能か？
   render() {
     return (
       <div>
         <h1 className="index-title"> {this.title} </h1>{" "}
         <p> ここにツイート前の叫びを投稿します。 </p>{" "}
         <Form placeholder="これは初期値です。"> </Form>{" "}
-        <div className="button-wrapper">
-          <button className="submit-button" onClick={this.doAction}>
-            {" "}
-            投稿{" "}
-          </button>{" "}
-        </div>{" "}
       </div>
     );
   }
