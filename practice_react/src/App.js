@@ -6,6 +6,7 @@ class App extends Component {
   constructor(props) {
     super();
     this.title = props.title;
+    this.doAction = this.doAction.bind(this);
   }
   render() {
     return (
