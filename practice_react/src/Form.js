@@ -9,12 +9,16 @@ class Form extends Component {
       message: "",
     };
     this.doAction = this.doAction.bind(this);
+    this.doChange = this.doChange.bind(this);
   }
   doAction(e) {
     this.setState((state) => ({
-      counter: state.message,
-      // Formコンポーネントのstateを取得したい
+      message: state.message,
     }));
+    this.test = this.input;
+  }
+  doChange(e) {
+    this.input = e.target.value;
   }
   render() {
     return (
@@ -24,6 +28,7 @@ class Form extends Component {
           className="main-form"
           maxLength="140"
           placeholder={this.placeholder}
+          onChange={this.doChange}
         />
         <div className="button-wrapper">
           <button className="submit-button" onClick={this.doAction}>
@@ -31,6 +36,7 @@ class Form extends Component {
             投稿{" "}
           </button>{" "}
         </div>{" "}
+        <p>{ this.test }</p>
       </div>
     );
   }
