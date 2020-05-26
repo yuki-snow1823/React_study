@@ -1,5 +1,7 @@
 // リアクトもちゃんと入れる
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
 
 class Form extends Component {
   constructor(props) {
@@ -7,15 +9,17 @@ class Form extends Component {
     this.placeholder = props.placeholder;
     this.state = {
       message: "",
+      count: 0
     };
     this.doAction = this.doAction.bind(this);
     this.doChange = this.doChange.bind(this);
   }
   doAction(e) {
-    this.setState((state) => ({
-      message: state.message,
-    }));
-    this.test = this.input;
+    if (e.shiftKey) {
+      this.props.dispatch({ type: "DECREMENT" });
+    } else {
+      this.props.dispatch({ type: "INCREMENT" });
+    }
   }
   doChange(e) {
     this.input = e.target.value;
@@ -36,10 +40,11 @@ class Form extends Component {
             投稿{" "}
           </button>{" "}
         </div>{" "}
-        <p>{ this.test }</p>
+        <p>{this.test}</p>
+        <p>{this.state.count}</p>
       </div>
     );
   }
 }
-
+Form = connect()(Form);
 export default Form;
