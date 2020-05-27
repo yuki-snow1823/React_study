@@ -28,6 +28,7 @@ let pstore = persistStore(store);
 // 表示をレンダリング
 ReactDOM.render(
   <Provider store={store}>
+     {/* ここでstoreの値を送っている */}
     <PersistGate loading={<p> loading... </p>} persistor={pstore}>
       <App />
     </PersistGate>{" "}

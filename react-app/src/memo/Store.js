@@ -20,6 +20,8 @@ const initData = {
 export function memoReducer(state = initData, action) {
   switch (action.type) {
     case 'ADD':
+      console.log(state); // typeとメッセージが入っている
+      console.log(action); // ごちゃついたものが入っている
       return addReduce(state, action);
 
     case 'DELETE':
@@ -35,6 +37,7 @@ export function memoReducer(state = initData, action) {
 
 // レデュースアクション
 // 上の仕分けに対応するアクション
+// 実際に何をするかの部分
 
 function addReduce(state, action){
   let d = new Date();
@@ -44,7 +47,10 @@ function addReduce(state, action){
     message:action.message,
     created:f
   };
+  // reduxの特性のためにわざわざこうしている
+  // 中身を動的に書き換えている
   let newdata = state.data.slice();
+  // 先頭に追加する、最後に追加はpush
   newdata.unshift(data);
   return {
     data:newdata,
@@ -52,6 +58,7 @@ function addReduce(state, action){
     mode:'default',
     fdata:[]
   };
+  // 追加したものを入れて、返している
 }
 
 // メモ検索のレデュース処理

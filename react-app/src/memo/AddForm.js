@@ -33,6 +33,7 @@ class AddForm extends Component {
   doAction(e) {
     e.preventDefault();
     console.log(e);
+    // storeから持ってきたアクション、これがアクションクリエイターに発火
     let action = addMemo(this.state.message);
     // アクションの定義
     console.log("36", action);
