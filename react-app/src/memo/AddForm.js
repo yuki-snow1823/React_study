@@ -20,12 +20,14 @@ class AddForm extends Component {
     this.state = {
       message: "",
     };
+    // このページのdoChangeが発火する
     this.doChange = this.doChange.bind(this);
     this.doAction = this.doAction.bind(this);
   }
 
   doChange(e) {
     this.setState({
+      // ここで値をどんどん更新している
       message: e.target.value,
     });
   }
