@@ -8,7 +8,8 @@ class Memo extends Component {
   render() {
     let data;
     let n = 0;
-    switch (this.props.mode) { //に、関してケースを分けるってこと
+    // switchを使って何をrenderするか分けられる
+    switch (this.props.mode) { //に、関してケースを分けるってこと、modeはstateの中に入っている
       case "default": // それがdefaultなら
         data = this.props.data.map((value) => (
           <Item key={value.message} value={value} index={n++} />
@@ -35,7 +36,6 @@ class Memo extends Component {
     }
     return (
       <table>
-        {" "}
         <tbody> {data} </tbody>
       </table>
     );
