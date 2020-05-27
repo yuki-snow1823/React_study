@@ -23,25 +23,20 @@ class App extends Component {
         <h1> Memo </h1> <AddForm />
         <hr />
         <table>
-          {" "}
           <tbody>
-            {" "}
             <tr>
               <td style={this.td}>
-                {" "}
-                <FindForm />{" "}
-              </td>{" "}
+                <FindForm />
+              </td>
               <td style={this.td}>
-                {" "}
-                <DelForm />{" "}
-              </td>{" "}
+                <DelForm />
+              </td>
               <td style={this.td}>
-                {" "}
-                <PersistForm />{" "}
-              </td>{" "}
+                <PersistForm />
+              </td>
             </tr>
-          </tbody>{" "}
-        </table>{" "}
+          </tbody>
+        </table>
         <Memo />
       </div>
     );
