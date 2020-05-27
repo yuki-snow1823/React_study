@@ -7,6 +7,7 @@ import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 import "./index.css";
 import App from "./App";
+// 本来ここからstoreを読み込む。
 import MemoStore, { memoReducer } from "./memo/Store";
 
 // Redux Persistの設定

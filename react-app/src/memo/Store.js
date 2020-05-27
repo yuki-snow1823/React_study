@@ -3,7 +3,7 @@ import {
 } from 'redux';
 // 必須
 
-// 最初にストアの値を設定
+// 最初にステートの値を設定
 const initData = {
   data: [],
   message: 'please type message:',
@@ -13,7 +13,9 @@ const initData = {
 
 // レデューサー
 // コンポーネントからきた処理をイベント名ごとに振り分ける
-// state=名前+アクション
+// state=上のデータ+アクション
+
+// で、各アクションごとにデータ＋アクションの引数
 // 必ずstateを戻り値にすること
 export function memoReducer(state = initData, action) {
   switch (action.type) {
