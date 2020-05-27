@@ -33,6 +33,7 @@ class DelForm extends Component {
   doAction(e) {
     e.preventDefault();
     let action = deleteMemo(this.state.number);
+    // storeのアクションクリエイターの発火
     this.props.dispatch(action);
     this.setState({
       number: 0,
