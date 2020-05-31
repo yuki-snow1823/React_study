@@ -5,13 +5,18 @@ import "./index.css";
 //  3つのコンポーネント
 class Square extends React.Component {
   render() {
-    return <button className="square">{/* TODO */}</button>;
+    // ボタン一個だけレンダーしてくれる
+    return <button className="square">
+      {/* boardから来たpropsを表示 */}
+      { this.props.value }
+    </button>;
   }
 }
 
 class Board extends React.Component {
   renderSquare(i) {
-    return <Square />;
+    // propsを渡している
+    return <Square value={i}/>;
   }
 
   render() {
