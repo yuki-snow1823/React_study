@@ -6,7 +6,8 @@ import "./index.css";
 class Square extends React.Component {
   render() {
     // ボタン一個だけレンダーしてくれる
-    return <button className="square">
+    return <button className="square" onClick={function () { alert('click'); }}>
+      {/* 同義 <button className="square" onClick={() => alert('click')}></button> */}
       {/* boardから来たpropsを表示 */}
       { this.props.value }
     </button>;
@@ -26,6 +27,7 @@ class Board extends React.Component {
       <div>
         <div className="status">{status}</div>
         <div className="board-row">
+          {/* 数字が入る直接の原因 */}
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
