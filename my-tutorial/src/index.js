@@ -4,20 +4,38 @@ import "./index.css";
 
 //  3つのコンポーネント
 class Square extends React.Component {
+  // stateの設定
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null
+    };
+  }
   render() {
     // ボタン一個だけレンダーしてくれる
-    return <button className="square" onClick={function () { alert('click'); }}>
+    return <button className="square"
+    onClick={() => this.setState({value: 'X'})}>
       {/* 同義 <button className="square" onClick={() => alert('click')}></button> */}
       {/* boardから来たpropsを表示 */}
-      { this.props.value }
+      {/* { this.props.value } から以下のように変更、クリック時の場所が入る*/}
+      {/* Square の render メソッド内に書かれた onClick ハンドラ内で this.setState を呼び出すことで、React に <button> がクリックされたら常に再レンダーするよう伝えることができます。 */}
+      { this.state.value }
     </button>;
   }
 }
 
 class Board extends React.Component {
+  // 初期値の設定
+  constructor(props) {
+    super(props);
+    this.state = {
+      squares: Array(9).fill(null),
+    };
+  }
   renderSquare(i) {
     // propsを渡している
-    return <Square value={i}/>;
+    // おそらく順番に入る
+    return <Square value={this.state.squares[i]} />;
   }
 
   render() {
