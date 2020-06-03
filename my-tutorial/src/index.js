@@ -5,27 +5,36 @@ import "./index.css";
 //  3つのコンポーネント
 
 //一つ目が四角
-class Square extends React.Component {
-  // stateの設定
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-    };
-  }
-  render() {
-    // ボタン一個だけレンダーしてくれる
-    return (
-      <button className="square" onClick={() => this.props.onClick()}>
-        {/* 同義 <button className="square" onClick={() => alert('click')}></button> */}
-        {/* boardから来たpropsを表示 */}
-        {/* { this.props.value } から以下のように変更、クリック時の場所が入る*/}
-        {/* Square の render メソッド内に書かれた onClick ハンドラ内で this.setState を呼び出すことで、React に <button> がクリックされたら常に再レンダーするよう伝えることができます。 */}
-        {this.props.value}
-        {/* だからばつマークが表示される */}
-      </button>
-    );
-  }
+// class Square extends React.Component {
+//   // stateの設定
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       value: null,
+//     };
+//   }
+//   render() {
+//     // ボタン一個だけレンダーしてくれる
+//     return (
+//       <button className="square" onClick={() => this.props.onClick()}>
+//         {/* 同義 <button className="square" onClick={() => alert('click')}></button> */}
+//         {/* boardから来たpropsを表示 */}
+//         {/* { this.props.value } から以下のように変更、クリック時の場所が入る*/}
+//         {/* Square の render メソッド内に書かれた onClick ハンドラ内で this.setState を呼び出すことで、React に <button> がクリックされたら常に再レンダーするよう伝えることができます。 */}
+//         {this.props.value}
+//         {/* だからばつマークが表示される */}
+//       </button>
+//     );
+//   }
+// }
+
+// これを関数コンポーネントにするとしたのようになる
+function Square(props) {
+  return (
+    <button className="square" onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
 }
 
 class Board extends React.Component {
@@ -38,6 +47,13 @@ class Board extends React.Component {
       squares: Array(9).fill(null),
     };
   }
+  
+  handleClick(i) {
+    const squares = this.state.squares.slice();
+    squares[i] = "X";
+    this.setState({ squares: squares });
+  }
+
   renderSquare(i) {
     // propsを渡している
     // valueが{this.state.squares[i]}になる
