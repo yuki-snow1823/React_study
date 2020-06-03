@@ -53,7 +53,7 @@ class Board extends React.Component {
     const squares = this.state.squares.slice();
     // squares[i] = "X";
     if (calculateWinner(squares) || squares[i]) {
-      return;
+      return; // これのおかげで、勝者が出るとゲームがもう終わってしまう。押してもreturnされるから。
     }
     squares[i] = this.state.xIsNext ? "X" : "O"; // 順番によって出力を変える。
     this.setState({
