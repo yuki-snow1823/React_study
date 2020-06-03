@@ -48,15 +48,18 @@ class Board extends React.Component {
       xIsNext: true, // 先行
     };
   }
-  
+
   handleClick(i) {
     const squares = this.state.squares.slice();
     // squares[i] = "X";
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
     squares[i] = this.state.xIsNext ? "X" : "O"; // 順番によって出力を変える。
-     this.setState({
-       squares: squares,
-       xIsNext: !this.state.xIsNext,
-     });
+    this.setState({
+      squares: squares,
+      xIsNext: !this.state.xIsNext,
+    });
   }
 
   renderSquare(i) {
@@ -75,8 +78,14 @@ class Board extends React.Component {
   // boardのrender
   render() {
     // 文字を出してくれるところ
-        const status = "Next player: " + (this.state.xIsNext ? "X" : "O");
-
+    const winner = calculateWinner(this.state.squares);
+    let status; // 再代入する可能性があるからlet
+    if (winner) {
+      // 終わったら=(calculateWinnerがreturn squares[a];をリターンしたら)終わり
+      status = "Winner: " + winner;
+    } else {
+      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+    }
 
     // ここが九個出力している原因の場所
     return (
@@ -124,8 +133,8 @@ class Game extends React.Component {
 
 ReactDOM.render(<Game />, document.getElementById("root"));
 
-
 // ヘルパー関数
+// 勝者判定
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
@@ -142,6 +151,7 @@ function calculateWinner(squares) {
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
+    // 同じものが連続しているか的な判定
   }
   return null;
 }
