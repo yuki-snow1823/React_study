@@ -45,13 +45,18 @@ class Board extends React.Component {
     this.state = {
       // stateがsquaresという配列を初期値nullで持っている。
       squares: Array(9).fill(null),
+      xIsNext: true, // 先行
     };
   }
   
   handleClick(i) {
     const squares = this.state.squares.slice();
-    squares[i] = "X";
-    this.setState({ squares: squares });
+    // squares[i] = "X";
+    squares[i] = this.state.xIsNext ? "X" : "O"; // 順番によって出力を変える。
+     this.setState({
+       squares: squares,
+       xIsNext: !this.state.xIsNext,
+     });
   }
 
   renderSquare(i) {
@@ -67,10 +72,13 @@ class Board extends React.Component {
     );
   }
 
+  // boardのrender
   render() {
     // 文字を出してくれるところ
-    const status = "Next player: X";
+        const status = "Next player: " + (this.state.xIsNext ? "X" : "O");
 
+
+    // ここが九個出力している原因の場所
     return (
       <div>
         <div className="status">{status}</div>
@@ -95,6 +103,7 @@ class Board extends React.Component {
   }
 }
 
+// 一番の親
 class Game extends React.Component {
   render() {
     return (
