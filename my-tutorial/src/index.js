@@ -94,7 +94,7 @@ class Board extends React.Component {
     // ここが九個出力している原因の場所
     return (
       <div>
-        <div className="status">{status}</div>
+        {/* <div className="status">{status}</div> */}
         <div className="board-row">
           {/* 数字が入る直接の原因 */}
           {this.renderSquare(0)}
@@ -134,6 +134,7 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[history.length - 1];
     const winner = calculateWinner(current.squares);
+
     let status;
     if (winner) {
       status = "Winner: " + winner;
@@ -143,7 +144,10 @@ class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
-          <Board />
+          <Board
+            squares={current.squares}
+            onClick={(i) => this.handleClick(i)}
+          />
         </div>
         <div className="game-info">
           <div>{/* status */}</div>
