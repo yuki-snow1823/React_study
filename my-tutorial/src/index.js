@@ -40,14 +40,15 @@ function Square(props) {
 class Board extends React.Component {
   // 初期値の設定
   // 子コンポーネントにまるばつを交互にできるようにするため
-  constructor(props) {
-    super(props);
-    this.state = {
-      // stateがsquaresという配列を初期値nullで持っている。
-      squares: Array(9).fill(null),
-      xIsNext: true, // 先行
-    };
-  }
+  // Gameコンポーネントに移動
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     // stateがsquaresという配列を初期値nullで持っている。
+  //     squares: Array(9).fill(null),
+  //     xIsNext: true, // 先行
+  //   };
+  // }
 
   handleClick(i) {
     const squares = this.state.squares.slice();
@@ -67,10 +68,13 @@ class Board extends React.Component {
     // valueが{this.state.squares[i]}になる
     return (
       <Square
-        value={this.state.squares[i]}
+        // value={this.state.squares[i]}
+        // onClick={() => this.handleClick(i)}
         // propsを直接書き換えないようにするため
         // squareでonclickを呼ぶとprops.onClickはこれだから、呼び出される
-        onClick={() => this.handleClick(i)}
+        value={this.props.squares[i]}
+        onClick={() => this.props.onClick(i)}
+        // gameコンポーネントから受けとる
       />
     );
   }
@@ -114,7 +118,28 @@ class Board extends React.Component {
 
 // 一番の親
 class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      history: [
+        {
+          squares: Array(9).fill(null),
+        },
+      ],
+      xIsNext: true,
+    };
+  }
+
   render() {
+    const history = this.state.history;
+    const current = history[history.length - 1];
+    const winner = calculateWinner(current.squares);
+    let status;
+    if (winner) {
+      status = "Winner: " + winner;
+    } else {
+      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+    }
     return (
       <div className="game">
         <div className="game-board">
