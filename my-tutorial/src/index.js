@@ -3,32 +3,34 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 //  3つのコンポーネント
- 
+
 //一つ目が四角
 class Square extends React.Component {
   // stateの設定
   constructor(props) {
     super(props);
     this.state = {
-      value: null
+      value: null,
     };
   }
   render() {
     // ボタン一個だけレンダーしてくれる
-    return <button className="square"
-    onClick={() => this.setState({value: 'X'})}>
-      {/* 同義 <button className="square" onClick={() => alert('click')}></button> */}
-      {/* boardから来たpropsを表示 */}
-      {/* { this.props.value } から以下のように変更、クリック時の場所が入る*/}
-      {/* Square の render メソッド内に書かれた onClick ハンドラ内で this.setState を呼び出すことで、React に <button> がクリックされたら常に再レンダーするよう伝えることができます。 */}
-      {this.state.value}
-      {/* だからばつマークが表示される */}
-    </button>;
+    return (
+      <button className="square" onClick={() => this.props.onClick()}>
+        {/* 同義 <button className="square" onClick={() => alert('click')}></button> */}
+        {/* boardから来たpropsを表示 */}
+        {/* { this.props.value } から以下のように変更、クリック時の場所が入る*/}
+        {/* Square の render メソッド内に書かれた onClick ハンドラ内で this.setState を呼び出すことで、React に <button> がクリックされたら常に再レンダーするよう伝えることができます。 */}
+        {this.props.value}
+        {/* だからばつマークが表示される */}
+      </button>
+    );
   }
 }
 
 class Board extends React.Component {
   // 初期値の設定
+  // 子コンポーネントにまるばつを交互にできるようにするため
   constructor(props) {
     super(props);
     this.state = {
@@ -38,8 +40,15 @@ class Board extends React.Component {
   }
   renderSquare(i) {
     // propsを渡している
-    // おそらく順番に入る
-    return <Square value={this.state.squares[i]} />;
+    // valueが{this.state.squares[i]}になる
+    return (
+      <Square
+        value={this.state.squares[i]}
+        // propsを直接書き換えないようにするため
+        // squareでonclickを呼ぶとprops.onClickはこれだから、呼び出される
+        onClick={() => this.handleClick(i)}
+      />
+    );
   }
 
   render() {
